@@ -1,0 +1,28 @@
+/* ============ Rules Trial — full family, self-hosted ============ */
+/* Thin 100 */
+@font-face{font-family:"Rules Trial";font-style:normal;font-weight:100;font-display:swap;src:url("fonts/RulesTrial-Thin.otf") format("opentype");}
+@font-face{font-family:"Rules Trial";font-style:italic;font-weight:100;font-display:swap;src:url("fonts/RulesTrial-ThinItalic.otf") format("opentype");}
+/* UltraLight 200 */
+@font-face{font-family:"Rules Trial";font-style:normal;font-weight:200;font-display:swap;src:url("fonts/RulesTrial-UltraLight.otf") format("opentype");}
+@font-face{font-family:"Rules Trial";font-style:italic;font-weight:200;font-display:swap;src:url("fonts/RulesTrial-UltraLightItalic.otf") format("opentype");}
+/* Light 300 */
+@font-face{font-family:"Rules Trial";font-style:normal;font-weight:300;font-display:swap;src:url("fonts/RulesTrial-Light.otf") format("opentype");}
+@font-face{font-family:"Rules Trial";font-style:italic;font-weight:300;font-display:swap;src:url("fonts/RulesTrial-LightItalic.otf") format("opentype");}
+/* Regular 400 */
+@font-face{font-family:"Rules Trial";font-style:normal;font-weight:400;font-display:swap;src:url("fonts/RulesTrial-Regular.otf") format("opentype");}
+@font-face{font-family:"Rules Trial";font-style:italic;font-weight:400;font-display:swap;src:url("fonts/RulesTrial-RegularItalic.otf") format("opentype");}
+/* Medium 500 */
+@font-face{font-family:"Rules Trial";font-style:normal;font-weight:500;font-display:swap;src:url("fonts/RulesTrial-Medium.otf") format("opentype");}
+@font-face{font-family:"Rules Trial";font-style:italic;font-weight:500;font-display:swap;src:url("fonts/RulesTrial-MediumItalic.otf") format("opentype");}
+/* Semibold 600 */
+@font-face{font-family:"Rules Trial";font-style:normal;font-weight:600;font-display:swap;src:url("fonts/RulesTrial-Semibold.otf") format("opentype");}
+@font-face{font-family:"Rules Trial";font-style:italic;font-weight:600;font-display:swap;src:url("fonts/RulesTrial-SemiboldItalic.otf") format("opentype");}
+/* Bold 700 */
+@font-face{font-family:"Rules Trial";font-style:normal;font-weight:700;font-display:swap;src:url("fonts/RulesTrial-Bold.otf") format("opentype");}
+@font-face{font-family:"Rules Trial";font-style:italic;font-weight:700;font-display:swap;src:url("fonts/RulesTrial-BoldItalic.otf") format("opentype");}
+/* ExtraBold 800 */
+@font-face{font-family:"Rules Trial";font-style:normal;font-weight:800;font-display:swap;src:url("fonts/RulesTrial-ExtraBold.otf") format("opentype");}
+@font-face{font-family:"Rules Trial";font-style:italic;font-weight:800;font-display:swap;src:url("fonts/RulesTrial-ExtraBoldItalic.otf") format("opentype");}
+/* Black 900 */
+@font-face{font-family:"Rules Trial";font-style:normal;font-weight:900;font-display:swap;src:url("fonts/RulesTrial-Black.otf") format("opentype");}
+@font-face{font-family:"Rules Trial";font-style:italic;font-weight:900;font-display:swap;src:url("fonts/RulesTrial-BlackItalic.otf") format("opentype");}

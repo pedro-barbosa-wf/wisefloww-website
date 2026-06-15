@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wise Floww — Your business operations, like you've never seen before.</title>
+<meta name="description" content="Your business operations, like you've never seen before. Wise Floww connects your tools and data into one secure, intelligent management layer.">
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="wisefloww/favicon.png?v=1">
+<link rel="apple-touch-icon" href="wisefloww/favicon.png?v=1">
+
+<!-- Social preview (Open Graph) -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Wise Floww — Your business operations, like you've never seen before.">
+<meta property="og:description" content="Wise Floww connects your tools and data into one secure, intelligent management layer.">
+<meta property="og:image" content="wisefloww/social-preview.png?v=1">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<!-- Social preview (Twitter / X) -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Wise Floww — Your business operations, like you've never seen before.">
+<meta name="twitter:description" content="Wise Floww connects your tools and data into one secure, intelligent management layer.">
+<meta name="twitter:image" content="wisefloww/social-preview.png?v=1">
+
+<link rel="stylesheet" href="wisefloww/fonts.css?v=37">
+<link rel="stylesheet" href="wisefloww/styles.css?v=55">
+<script>document.documentElement.classList.add('preload');</script>
+<style>
+  .cm-overlay{position:fixed;inset:0;z-index:2000;display:none;align-items:flex-start;justify-content:center;
+    background:rgba(8,16,26,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);overflow-y:auto;padding:6vh 20px 40px;}
+  .cm-overlay.open{display:flex;}
+  .cm-dialog{position:relative;width:100%;max-width:680px;background:#fff;border-radius:18px;overflow:hidden;
+    box-shadow:0 30px 80px rgba(8,16,26,.45);animation:cmIn .26s cubic-bezier(.22,1,.36,1);}
+  @keyframes cmIn{from{opacity:0;transform:translateY(18px) scale(.98);}to{opacity:1;transform:none;}}
+  .cm-head{display:flex;align-items:center;justify-content:space-between;
+    background:#0E1B2A;padding:14px 18px;}
+  .cm-tag{display:inline-flex;align-items:center;gap:.5em;color:#fff;font-size:13px;font-weight:600;
+    letter-spacing:.02em;font-family:"Rules Trial",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;}
+  .cm-dot{width:8px;height:8px;border-radius:50%;background:#D0FF00;}
+  .cm-close{width:34px;height:34px;border:none;border-radius:50%;
+    background:rgba(255,255,255,.1);color:#fff;font-size:22px;line-height:1;cursor:pointer;display:flex;
+    align-items:center;justify-content:center;transition:background .18s,transform .18s;}
+  .cm-close:hover{background:#D0FF00;color:#0E1B2A;transform:rotate(90deg);}
+  .cm-body{padding:26px 30px 30px;min-height:120px;overflow-x:hidden;}
+  /* the HubSpot form renders in an iframe — pin it to the modal width so it can
+     never overflow horizontally (no sideways scrolling) */
+  .cm-body .hs-form-frame,
+  .cm-body .hs-form-frame iframe{width:100% !important;max-width:100% !important;border:0;}
+
+  @media (max-width:560px){
+    .cm-overlay{padding:18px 14px;align-items:center;}
+    .cm-dialog{max-width:380px;width:100%;border-radius:14px;max-height:88vh;max-height:88dvh;
+      display:flex;flex-direction:column;}
+    .cm-head{padding:11px 14px;}
+    .cm-body{flex:1;overflow-y:auto;overflow-x:hidden;padding:16px 16px 18px;-webkit-overflow-scrolling:touch;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ LOADER ============ -->
+<div class="loader" id="loader" role="progressbar" aria-label="Loading" aria-valuemin="0" aria-valuemax="100">
+  <div class="loader-count"><span id="loaderNum">0</span><span class="loader-pct">%</span></div>
+</div>
+
+<!-- ============ NAV (fixed, top-level to stay above all sections) ============ -->
+  <nav class="nav">
+    <a class="brand" href="#" aria-label="Wise Floww home">
+      <svg viewBox="178.5 43.6 152 20.8" role="img" aria-label="wisefloww">
+        <g fill="currentColor">
+          <path d="M252.483 59.2899V44.0676H250.627V49.9598H244.941V48.6757C244.941 46.6794 245.636 45.9017 247.417 45.9017H248.677V44.0676H247.279C244.34 44.0676 243.085 45.4244 243.085 48.6055V49.9598H240.793V51.7236H243.085V63.8956H244.941V51.7236H250.627V59.3578C250.627 63.1858 251.882 63.8956 254.821 63.8956H256.219V62.064H254.959C253.176 62.064 252.483 61.2863 252.483 59.2899Z"></path>
+          <path d="M329.409 49.6909H329.344C326.727 49.6909 325.685 53.17 324.677 56.5328C323.96 58.9241 323.069 61.9017 321.99 61.9017C320.767 61.9017 319.95 59.0331 319.231 56.5037C318.279 53.153 317.293 49.6909 314.565 49.6909C311.837 49.6909 310.829 53.2257 309.782 56.6418C309.179 58.6091 308.171 61.9017 307.182 61.9017C306.129 61.9017 305.038 58.4056 304.389 56.3172C303.325 52.9083 302.322 49.6884 299.975 49.6884C297.467 49.6884 296.471 52.9277 295.415 56.3583C294.657 58.8271 293.709 61.8992 292.529 61.8992C291.56 61.8992 290.548 58.5824 289.944 56.6006C288.903 53.1893 287.827 49.6618 285.227 49.6618C282.628 49.6618 281.6 53.1603 280.602 56.5425C280.011 58.5461 279.023 61.8992 277.998 61.8992C276.973 61.8992 275.887 58.58 275.19 56.3826C274.073 52.8671 273.019 49.5479 270.521 49.5479H270.393V51.6145H270.521C271.507 51.6145 272.58 54.9895 273.22 57.0076C274.356 60.5861 275.43 63.9659 277.998 63.9659C280.566 63.9659 281.547 60.6442 282.584 57.1288C283.18 55.1082 284.178 51.7284 285.227 51.7284C286.276 51.7284 287.304 55.0234 287.97 57.2039C289.031 60.683 290.034 63.9683 292.532 63.9683C295.238 63.9683 296.333 60.4092 297.392 56.9689C297.993 55.0185 298.996 51.7575 299.977 51.7575C300.803 51.7575 301.855 55.1251 302.419 56.935C303.497 60.3923 304.612 63.9683 307.185 63.9683C309.758 63.9683 310.7 60.7048 311.759 57.2475C312.508 54.8005 313.44 51.7575 314.567 51.7575C315.694 51.7575 316.573 54.7036 317.247 57.0706C318.211 60.4625 319.209 63.9683 321.993 63.9683C324.609 63.9683 325.651 60.4892 326.659 57.1264C327.376 54.7351 328.268 51.7575 329.346 51.7575H329.474V49.6909H329.409Z"></path>
+          <path d="M203.619 56.5037C202.9 58.9071 202.006 61.8944 200.92 61.8944C199.692 61.8944 198.873 59.0161 198.151 56.4746C197.194 53.1143 196.208 49.6376 193.468 49.6376C190.727 49.6376 189.717 53.1821 188.668 56.6152C188.065 58.5897 187.052 61.8944 186.061 61.8944C185.005 61.8944 183.91 58.3862 183.258 56.2881C182.19 52.8696 181.179 49.64 178.827 49.64C178.812 49.64 178.795 49.64 178.783 49.6424V51.7187C178.798 51.7139 178.812 51.7139 178.827 51.7139C179.655 51.7139 180.709 55.0937 181.276 56.9107C182.359 60.3802 183.476 63.9707 186.061 63.9707C188.646 63.9707 189.589 60.6951 190.65 57.2257C191.401 54.7714 192.336 51.7163 193.468 51.7163C194.599 51.7163 195.481 54.6697 196.157 57.0464C197.124 60.4504 198.127 63.9707 200.92 63.9707C203.546 63.9707 204.593 60.4795 205.603 57.1021C206.32 54.7012 207.217 51.7139 208.297 51.7139H208.426V49.64H208.297C205.671 49.64 204.627 53.1312 203.617 56.5061L203.619 56.5037Z"></path>
+          <path d="M212.438 49.5504H210.643H210.522H210.461V49.972V50.0931V63.571V63.6922V63.7527H210.522H210.643H212.317H212.438H212.498V63.6922V63.571V50.0931V49.972V49.5504H212.438Z"></path>
+          <path d="M211.471 45.7418C210.705 45.7418 210.211 46.2457 210.211 47.0234C210.211 47.8011 210.717 48.2833 211.471 48.2833C212.224 48.2833 212.731 47.7769 212.731 47.0234C212.731 46.2699 212.236 45.7418 211.471 45.7418Z"></path>
+          <path d="M220.263 55.6243L219.951 55.5419L219.912 55.5322C219.059 55.3263 217.063 54.8393 217.084 53.2669C217.084 52.1791 218.269 51.3602 219.842 51.3602H219.902C221.441 51.382 222.63 52.2445 222.865 53.5043L222.885 53.6037L222.894 53.6521H224.58H224.723H224.794L224.782 53.5819L224.76 53.4414C224.377 51.0428 222.516 49.5528 219.904 49.5528C217.089 49.5528 215.047 51.1228 215.047 53.2887C215.047 55.8399 217.336 56.7557 219.333 57.2693C222.041 57.9647 222.955 58.6649 222.955 60.0507C222.955 61.313 221.775 62.1609 220.018 62.1609H219.951C218.129 62.1391 216.617 60.9738 216.508 59.5104L216.5 59.399L216.496 59.3432H214.722H214.596H214.533V59.4062L214.543 59.5322C214.599 60.7799 215.214 61.9259 216.275 62.7545C217.264 63.5274 218.587 63.9707 219.907 63.9707C222.901 63.9707 224.995 62.3596 224.995 60.0531C224.995 56.8817 222.373 56.1864 220.268 55.6291L220.263 55.6243Z"></path>
+          <path d="M233.213 49.5504C229.359 49.5504 226.451 52.6443 226.451 56.746C226.451 60.8478 229.249 63.9659 233.257 63.9659C236.033 63.9659 238.466 62.2191 239.457 59.5128L239.517 59.3505L239.546 59.2681H237.429L237.412 59.3021L237.38 59.3723C236.61 61.0295 235.062 62.018 233.235 62.018C230.727 62.018 228.842 60.2324 228.53 57.5673H239.912L239.917 57.5116L239.927 57.4002C239.948 57.124 239.973 56.8405 239.973 56.5595C239.973 52.6273 237.002 49.5455 233.211 49.5455L233.213 49.5504ZM228.532 55.9247C228.872 53.313 230.788 51.4959 233.211 51.4959C235.633 51.4959 237.637 53.3541 237.918 55.9247H228.532Z"></path>
+          <path d="M263.279 49.5504C259.449 49.5504 256.449 52.7121 256.449 56.7461C256.449 58.7182 257.149 60.5426 258.421 61.8848C259.693 63.227 261.418 63.9635 263.279 63.9635C265.14 63.9635 266.877 63.2246 268.144 61.8848C269.411 60.545 270.109 58.7206 270.109 56.7461C270.109 54.7715 269.411 52.9641 268.144 51.6267C266.874 50.2869 265.147 49.5504 263.279 49.5504ZM263.279 61.9308C260.578 61.9308 258.463 59.6534 258.463 56.7485C258.463 53.8436 260.578 51.5662 263.279 51.5662C265.98 51.5662 268.071 53.7951 268.071 56.7485C268.071 59.7019 266.012 61.9308 263.279 61.9308Z"></path>
+        </g>
+      </svg>
+    </a>
+    <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links" id="nav-links">
+      <a href="#solutions">Solutions</a>
+      <a href="#security">Security</a>
+      <a href="#contact">Contact</a>
+      <a href="#faq">FAQ</a>
+      <span class="lang"><a href="#" class="active">EN</a><span class="sep">/</span><a href="#">ES</a><span class="sep">/</span><a href="#">PT</a></span>
+    </div>
+  </nav>
+
+
+<!-- ============ HERO ============ -->
+<header class="hero" data-screen-label="Hero">
+  <div class="container">
+
+    <div class="hero-inner">
+      <h1>Your business operations,<br>like you've never <span class="lime">seen</span> before.</h1>
+      <p class="hero-sub"><span class="hero-rule"></span>Wise Floww is a tech company focused on transforming complex operations into a centralized operational view, integrating data and tools to help managers identify bottlenecks, track key metrics, and make more accurate decisions.</p>
+      <div class="hero-actions">
+        <a class="link-underline" href="#solutions">Solutions</a>
+        <a class="link-underline link-desk" href="#contact">See it live</a>
+        <a class="link-underline link-mob" href="#contact">Contact</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ INTRO ============ -->
+<section class="intro container" data-screen-label="Intro">
+  <div class="intro-grid">
+    <div class="left">
+      <div class="intro-rule"></div>
+      <h2>We were founded on the belief that <br>any complex operation can become <br>clearer, smarter, and easier to manage.</h2>
+    </div>
+    <div class="right">
+      <p>Many companies already have the tools, data, and people they need. The challenge is that everything is scattered across systems, spreadsheets, and manual routines, making it harder to track priorities and make decisions.</p>
+      <a class="link-dark" href="#solutions">Our Solutions</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CURRENT REALITY ============ -->
+<section class="section reality" data-screen-label="Current Reality">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">Current Reality</span>
+      <h2 class="h2">Most companies still run on spreadsheets, <br>disconnected tools, and manual follow-ups.</h2>
+      <p class="lead">Information gets scattered across tools, teams, and routines. Reports take too long to update, operational status becomes hard to track, and managers struggle to see what matters, align priorities, and make more accurate decisions.</p>
+    </div>
+    <div class="cards-4">
+      <article class="pcard">
+        <div class="thumb"><img src="wisefloww/reality-1.png?v=1" alt="Employee juggling a phone call and laptop"></div>
+        <h3>Disconnected tools slow teams</h3>
+        <p>Teams jump between spreadsheets, systems, and messages to see what needs attention.</p>
+      </article>
+      <article class="pcard">
+        <div class="thumb"><img src="wisefloww/reality-2.png?v=1" alt="Frustrated worker doing manual data entry"></div>
+        <h3>Manual tasks create rework</h3>
+        <p>People spend hours copying, checking, and updating data that should flow itself.</p>
+      </article>
+      <article class="pcard">
+        <div class="thumb"><img src="wisefloww/reality-3.png?v=1" alt="Manager on a call reviewing a laptop"></div>
+        <h3>Managers lack visibility</h3>
+        <p>Critical data sits across tools, so status and priorities stay hard to track.</p>
+      </article>
+      <article class="pcard">
+        <div class="thumb"><img src="wisefloww/reality-4.png?v=1" alt="Leadership team reviewing reports in a meeting"></div>
+        <h3>Decisions lack full context</h3>
+        <p>When information stays scattered, leaders decide with partial context and less trust.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHAT'S POSSIBLE NOW ============ -->
+<section class="possible" id="possible" data-screen-label="Possible Now">
+  <div class="container">
+    <span class="eyebrow">What's Possible Now</span>
+    <h2 class="h2">Now, your tools, data, and teams can finally work as one connected system.</h2>
+    <div class="possible-cols">
+      <div>
+        <h4>Find where data, tools, and routines are scattered</h4>
+        <p>We analyze how the process works today, where information lives, which tools are used, and what managers need to track to make better decisions.</p>
+      </div>
+      <div>
+        <h4>Build the centralized management view</h4>
+        <p>We bring critical data into dashboards, alerts, and operational views that help managers track status, spot bottlenecks, and decide with confidence.</p>
+      </div>
+    </div>
+    <div class="feature-box">
+      <img class="feature-img" src="wisefloww/feature-a.png?v=2" alt="Operational graph view">
+      <img class="feature-img" src="wisefloww/feature-b.png?v=3" alt="Crop health management dashboard">
+    </div>
+  </div>
+</section>
+
+<!-- ============ OUR SOLUTIONS ============ -->
+<section class="section solutions" id="solutions" data-screen-label="Solutions">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">Our Solutions</span>
+      <h2 class="h2">Turn each critical operation into a centralized management view your team can actually use.</h2>
+      <p class="lead">From sales to field operations, Wise Floww maps the workflow, centralizes critical data, and creates clear views for the people who manage the business every day.</p>
+    </div>
+    <div class="cards-3">
+      <article class="scard">
+        <div class="pic"><img src="wisefloww/solution-1.png?v=1" alt="Sales team reviewing a deal"></div>
+        <div class="body">
+          <h3>Sales Management</h3>
+          <p>Centralize leads, follow-ups, pipeline data, commercial routines, and key sales indicators in one clear management view.</p>
+          <div class="tag">Pipeline visibility · Faster follow-up</div>
+        </div>
+      </article>
+      <article class="scard">
+        <div class="pic"><img src="wisefloww/solution-2.png?v=1" alt="Customer making a payment in store"></div>
+        <div class="body">
+          <h3>Customer Service</h3>
+          <p>Track customer requests, service routines, response times, open issues, and relationship indicators across channels and tools.</p>
+          <div class="tag">Better tracking · Improved experience</div>
+        </div>
+      </article>
+      <article class="scard">
+        <div class="pic"><img src="wisefloww/solution-3.png?v=1" alt="Employee reviewing operational documents"></div>
+        <div class="body">
+          <h3>Daily Operations</h3>
+          <p>Bring visibility to internal processes, manual routines, operational bottlenecks, task flows, and team performance.</p>
+          <div class="tag">Operational control · Less rework</div>
+        </div>
+      </article>
+      <article class="scard">
+        <div class="pic"><img src="wisefloww/solution-4.png?v=1" alt="Field crew on a construction site"></div>
+        <div class="body">
+          <h3>Field Teams</h3>
+          <p>Centralize field activities, status updates, operational events, geospatial data, and performance indicators for distributed teams.</p>
+          <div class="tag">Field visibility · Real-time status</div>
+        </div>
+      </article>
+      <article class="scard">
+        <div class="pic"><img src="wisefloww/solution-5.png?v=1" alt="Finance team in a planning meeting"></div>
+        <div class="body">
+          <h3>Finance &amp; Admin</h3>
+          <p>Connect financial routines, spreadsheets, reports, payment status, administrative controls, and recurring tasks into one management view.</p>
+          <div class="tag">Less manual consolidation</div>
+        </div>
+      </article>
+      <article class="scard">
+        <div class="pic"><img src="wisefloww/solution-6.png?v=1" alt="Worker inspecting crops in a greenhouse"></div>
+        <div class="body">
+          <h3>Custom Processes</h3>
+          <p>Have a workflow unique to your business? We design a centralized system around your existing tools, data, and operation.</p>
+          <div class="tag">Custom project</div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECURITY ============ -->
+<section class="security" id="security" data-screen-label="Security">
+  <div class="container">
+    <div class="sec-grid">
+      <div class="sec-left">
+        <span class="eyebrow">Security</span>
+        <h2 class="h2">Critical data,<br>secured from day one.</h2>
+        <p class="lead">Wise Floww works with critical business data, operational routines, and internal systems. Every project is designed with clear access limits, responsible data usage, confidentiality, and documentation from day one.</p>
+        <div class="sec-points">
+          <div class="point">
+            <div class="num">01</div>
+            <h4>Limited access</h4>
+            <p>We connect only the tools and data sources required for the project, following the access limits defined with your team.</p>
+          </div>
+          <div class="point">
+            <div class="num">02</div>
+            <h4>Purpose-driven data use</h4>
+            <p>Your data is used only to build the agreed management view, dashboards, alerts, and operational workflows.</p>
+          </div>
+          <div class="point">
+            <div class="num">03</div>
+            <h4>No unnecessary migration</h4>
+            <p>We do not replace your current systems. We create a secure layer that makes your existing tools work better together.</p>
+          </div>
+          <div class="point">
+            <div class="num">04</div>
+            <h4>Clear documentation</h4>
+            <p>Every project includes basic documentation so your team understands how the system works and how to use it properly.</p>
+          </div>
+          <div class="point full">
+            <div class="num">05</div>
+            <h4>Human-in-the-loop validation</h4>
+            <p>Trusted managers and area specialists stay involved in the process, validating indicators, business rules, exceptions, and operational views before they are used to support decisions.</p>
+          </div>
+        </div>
+      </div>
+      <div class="sec-right">
+        <div class="sec-panel"><img src="wisefloww/security.png?v=1" alt="Person reviewing work on a laptop"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SYSTEMS WE CONNECT ============ -->
+<section class="systems" data-screen-label="Systems">
+  <div class="container">
+    <div class="top">
+      <span class="eyebrow">Systems We Connect</span>
+      <h2 class="h2">Your current tools,<br>finally working together.</h2>
+      <p class="lead">From spreadsheets and CRMs to ERPs, forms, messaging apps, and internal systems. Wise Floww connects the tools your team already uses without forcing new migrations or stack changes.</p>
+    </div>
+    <div class="connect-card">
+      <p class="ck">Tools &amp; Systems</p>
+      <h3>Built to connect the tools your team already trusts.</h3>
+      <p class="sub">Wise Floww works around your existing stack to centralize the data, reports, and workflows that matter most to your operation.</p>
+      <div class="int-grid">
+        <div class="int-cell"><p class="k">Spreadsheets</p><p class="v">Excel / CSV / Google Sheets</p></div>
+        <div class="int-cell"><p class="k">CRM</p><p class="v">HubSpot / Salesforce</p></div>
+        <div class="int-cell"><p class="k">Customer Support</p><p class="v">Zendesk / Intercom / Freshdesk</p></div>
+        <div class="int-cell"><p class="k">Email</p><p class="v">Gmail / Outlook</p></div>
+        <div class="int-cell"><p class="k">Messaging</p><p class="v">WhatsApp / Meta</p></div>
+        <div class="int-cell"><p class="k">Forms &amp; Surveys</p><p class="v">Google Forms / Typeform</p></div>
+        <div class="int-cell"><p class="k">Field Operations</p><p class="v">ArcGIS / Field Maps</p></div>
+        <div class="int-cell"><p class="k">Dashboards</p><p class="v">Power BI / Looker Studio</p></div>
+        <div class="int-cell"><p class="k">Automation</p><p class="v">Make / Zapier / n8n</p></div>
+        <div class="int-cell"><p class="k">Enterprise Systems</p><p class="v">ERPs / Internal systems</p></div>
+        <a href="#contact" class="int-cell cta" style="grid-column:span 2;">
+          <div><p class="k">Using a different one?</p><p class="v">Let's talk, we integrate with it.</p></div>
+          <span class="arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="cta-wrap" id="contact" data-screen-label="CTA">
+  <div class="container">
+    <div class="cta-card">
+      <div class="inner">
+        <span class="cta-tag">See it live</span>
+        <h2>Ready to make your operation floww smarter?</h2>
+        <a class="btn" href="#contact">Contact us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="faq" id="faq" data-screen-label="FAQ">
+  <div class="container">
+    <div class="faq-inner">
+    <span class="eyebrow">FAQ</span>
+    <h2>Frequently asked questions</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q">What does Wise Floww actually do?<span class="ic"></span></button>
+        <div class="faq-a"><div class="inner">Wise Floww helps companies turn scattered data, disconnected tools, and manual routines into centralized operational views for better management decisions.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Do we need to replace our current systems?<span class="ic"></span></button>
+        <div class="faq-a"><div class="inner">No. Wise Floww is designed to work around the tools your team already uses, connecting the systems and data that matter without forcing unnecessary migrations.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What kind of tools can Wise Floww connect?<span class="ic"></span></button>
+        <div class="faq-a"><div class="inner">We can work with spreadsheets, CRMs, emails, messaging apps, ERPs, forms, dashboards, databases, field tools, customer support systems, and internal platforms.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">How long does a project take?<span class="ic"></span></button>
+        <div class="faq-a"><div class="inner">Most projects are delivered in a few weeks, depending on the complexity of the operation, the number of systems involved, and how quickly data and access are provided.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Is our data secure?<span class="ic"></span></button>
+        <div class="faq-a"><div class="inner">Yes. Every project is designed with clear access limits, responsible data usage, confidentiality, documentation, and human validation from trusted people inside your operation.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What happens after the first project?<span class="ic"></span></button>
+        <div class="faq-a"><div class="inner">After the first project, Wise Floww can help maintain, monitor, and evolve the system with new indicators, new integrations, controlled improvements, and additional operational views.</div></div>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer" data-screen-label="Footer">
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="logo">
+          <svg viewBox="178.5 43.6 152 20.8" role="img" aria-label="wisefloww">
+            <g fill="#14202E">
+              <path d="M252.483 59.2899V44.0676H250.627V49.9598H244.941V48.6757C244.941 46.6794 245.636 45.9017 247.417 45.9017H248.677V44.0676H247.279C244.34 44.0676 243.085 45.4244 243.085 48.6055V49.9598H240.793V51.7236H243.085V63.8956H244.941V51.7236H250.627V59.3578C250.627 63.1858 251.882 63.8956 254.821 63.8956H256.219V62.064H254.959C253.176 62.064 252.483 61.2863 252.483 59.2899Z"></path>
+              <path d="M329.409 49.6909H329.344C326.727 49.6909 325.685 53.17 324.677 56.5328C323.96 58.9241 323.069 61.9017 321.99 61.9017C320.767 61.9017 319.95 59.0331 319.231 56.5037C318.279 53.153 317.293 49.6909 314.565 49.6909C311.837 49.6909 310.829 53.2257 309.782 56.6418C309.179 58.6091 308.171 61.9017 307.182 61.9017C306.129 61.9017 305.038 58.4056 304.389 56.3172C303.325 52.9083 302.322 49.6884 299.975 49.6884C297.467 49.6884 296.471 52.9277 295.415 56.3583C294.657 58.8271 293.709 61.8992 292.529 61.8992C291.56 61.8992 290.548 58.5824 289.944 56.6006C288.903 53.1893 287.827 49.6618 285.227 49.6618C282.628 49.6618 281.6 53.1603 280.602 56.5425C280.011 58.5461 279.023 61.8992 277.998 61.8992C276.973 61.8992 275.887 58.58 275.19 56.3826C274.073 52.8671 273.019 49.5479 270.521 49.5479H270.393V51.6145H270.521C271.507 51.6145 272.58 54.9895 273.22 57.0076C274.356 60.5861 275.43 63.9659 277.998 63.9659C280.566 63.9659 281.547 60.6442 282.584 57.1288C283.18 55.1082 284.178 51.7284 285.227 51.7284C286.276 51.7284 287.304 55.0234 287.97 57.2039C289.031 60.683 290.034 63.9683 292.532 63.9683C295.238 63.9683 296.333 60.4092 297.392 56.9689C297.993 55.0185 298.996 51.7575 299.977 51.7575C300.803 51.7575 301.855 55.1251 302.419 56.935C303.497 60.3923 304.612 63.9683 307.185 63.9683C309.758 63.9683 310.7 60.7048 311.759 57.2475C312.508 54.8005 313.44 51.7575 314.567 51.7575C315.694 51.7575 316.573 54.7036 317.247 57.0706C318.211 60.4625 319.209 63.9683 321.993 63.9683C324.609 63.9683 325.651 60.4892 326.659 57.1264C327.376 54.7351 328.268 51.7575 329.346 51.7575H329.474V49.6909H329.409Z"></path>
+              <path d="M203.619 56.5037C202.9 58.9071 202.006 61.8944 200.92 61.8944C199.692 61.8944 198.873 59.0161 198.151 56.4746C197.194 53.1143 196.208 49.6376 193.468 49.6376C190.727 49.6376 189.717 53.1821 188.668 56.6152C188.065 58.5897 187.052 61.8944 186.061 61.8944C185.005 61.8944 183.91 58.3862 183.258 56.2881C182.19 52.8696 181.179 49.64 178.827 49.64C178.812 49.64 178.795 49.64 178.783 49.6424V51.7187C178.798 51.7139 178.812 51.7139 178.827 51.7139C179.655 51.7139 180.709 55.0937 181.276 56.9107C182.359 60.3802 183.476 63.9707 186.061 63.9707C188.646 63.9707 189.589 60.6951 190.65 57.2257C191.401 54.7714 192.336 51.7163 193.468 51.7163C194.599 51.7163 195.481 54.6697 196.157 57.0464C197.124 60.4504 198.127 63.9707 200.92 63.9707C203.546 63.9707 204.593 60.4795 205.603 57.1021C206.32 54.7012 207.217 51.7139 208.297 51.7139H208.426V49.64H208.297C205.671 49.64 204.627 53.1312 203.617 56.5061L203.619 56.5037Z"></path>
+              <path d="M212.438 49.5504H210.643H210.522H210.461V49.972V50.0931V63.571V63.6922V63.7527H210.522H210.643H212.317H212.438H212.498V63.6922V63.571V50.0931V49.972V49.5504H212.438Z"></path>
+              <path d="M211.471 45.7418C210.705 45.7418 210.211 46.2457 210.211 47.0234C210.211 47.8011 210.717 48.2833 211.471 48.2833C212.224 48.2833 212.731 47.7769 212.731 47.0234C212.731 46.2699 212.236 45.7418 211.471 45.7418Z"></path>
+              <path d="M220.263 55.6243L219.951 55.5419L219.912 55.5322C219.059 55.3263 217.063 54.8393 217.084 53.2669C217.084 52.1791 218.269 51.3602 219.842 51.3602H219.902C221.441 51.382 222.63 52.2445 222.865 53.5043L222.885 53.6037L222.894 53.6521H224.58H224.723H224.794L224.782 53.5819L224.76 53.4414C224.377 51.0428 222.516 49.5528 219.904 49.5528C217.089 49.5528 215.047 51.1228 215.047 53.2887C215.047 55.8399 217.336 56.7557 219.333 57.2693C222.041 57.9647 222.955 58.6649 222.955 60.0507C222.955 61.313 221.775 62.1609 220.018 62.1609H219.951C218.129 62.1391 216.617 60.9738 216.508 59.5104L216.5 59.399L216.496 59.3432H214.722H214.596H214.533V59.4062L214.543 59.5322C214.599 60.7799 215.214 61.9259 216.275 62.7545C217.264 63.5274 218.587 63.9707 219.907 63.9707C222.901 63.9707 224.995 62.3596 224.995 60.0531C224.995 56.8817 222.373 56.1864 220.268 55.6291L220.263 55.6243Z"></path>
+              <path d="M233.213 49.5504C229.359 49.5504 226.451 52.6443 226.451 56.746C226.451 60.8478 229.249 63.9659 233.257 63.9659C236.033 63.9659 238.466 62.2191 239.457 59.5128L239.517 59.3505L239.546 59.2681H237.429L237.412 59.3021L237.38 59.3723C236.61 61.0295 235.062 62.018 233.235 62.018C230.727 62.018 228.842 60.2324 228.53 57.5673H239.912L239.917 57.5116L239.927 57.4002C239.948 57.124 239.973 56.8405 239.973 56.5595C239.973 52.6273 237.002 49.5455 233.211 49.5455L233.213 49.5504ZM228.532 55.9247C228.872 53.313 230.788 51.4959 233.211 51.4959C235.633 51.4959 237.637 53.3541 237.918 55.9247H228.532Z"></path>
+              <path d="M263.279 49.5504C259.449 49.5504 256.449 52.7121 256.449 56.7461C256.449 58.7182 257.149 60.5426 258.421 61.8848C259.693 63.227 261.418 63.9635 263.279 63.9635C265.14 63.9635 266.877 63.2246 268.144 61.8848C269.411 60.545 270.109 58.7206 270.109 56.7461C270.109 54.7715 269.411 52.9641 268.144 51.6267C266.874 50.2869 265.147 49.5504 263.279 49.5504ZM263.279 61.9308C260.578 61.9308 258.463 59.6534 258.463 56.7485C258.463 53.8436 260.578 51.5662 263.279 51.5662C265.98 51.5662 268.071 53.7951 268.071 56.7485C268.071 59.7019 266.012 61.9308 263.279 61.9308Z"></path>
+            </g>
+          </svg>
+        </div>
+        <p>Turning scattered operations into centralized management views.</p>
+      </div>
+      <div class="fcol fcol-solutions">
+        <p class="ck">Solutions</p>
+        <div style="display:grid;grid-template-columns:auto auto;gap:.75rem 2.75rem;justify-content:start;">
+          <ul>
+            <li><a href="#solutions">Sales Management</a></li>
+            <li><a href="#solutions">Customer Service</a></li>
+            <li><a href="#solutions">Daily Operations</a></li>
+          </ul>
+          <ul>
+            <li><a href="#solutions">Field Teams</a></li>
+            <li><a href="#solutions">Finance &amp; Admin</a></li>
+            <li><a href="#solutions">Custom Processes</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="fcol fcol-company">
+        <p class="ck">Company</p>
+        <ul>
+          <li><a href="#security">Security</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="fcol">
+        <p class="ck">Contact</p>
+        <ul>
+          <li><a href="#contact">Get in touch</a></li>
+        </ul>
+        <div class="fsoc">
+          <a href="#" aria-label="Instagram"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle></svg></a>
+          <a href="#" aria-label="X"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.65l-5.21-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25h6.818l4.71 6.231 5.46-6.231zm-1.16 17.52h1.833L7.084 4.126H5.117z"></path></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg width="16" height="16" viewBox="-2 -2 28 28" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 11-.01-4.13 2.06 2.06 0 01.01 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"></path></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div class="cp">© 2026 Wise Floww. All rights reserved.</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Preload counter → reveal.
+  // The percentage tracks REAL asset progress: it will not reach 100% (and the
+  // hero stays hidden) until every image — in-DOM + CSS backgrounds — has fully
+  // downloaded and decoded, plus fonts + window load. So after 100% the whole
+  // page can be scrolled fast with all imagery already painted.
+  (function(){
+    var loader = document.getElementById('loader');
+    var numEl  = document.getElementById('loaderNum');
+    if(!loader || !numEl){ document.documentElement.classList.remove('preload'); return; }
+    var shown = 0, revealed = false;
+
+    function reveal(){
+      if(revealed) return; revealed = true;
+      shown = 100;
+      numEl.textContent = 100;
+      loader.setAttribute('aria-valuenow', 100);
+      document.documentElement.classList.remove('preload');
+      document.documentElement.classList.add('revealed');
+      loader.classList.add('done');
+      setTimeout(function(){ loader.style.display = 'none'; }, 650);
+    }
+
+    // ---- Gather every asset that must be ready before we reveal ----
+    var urls = [], seen = {};
+    function add(u){ if(u && !seen[u]){ seen[u] = 1; urls.push(u); } }
+    Array.prototype.forEach.call(document.querySelectorAll('img[src]'), function(img){
+      add(img.getAttribute('src'));
+    });
+    // CSS background images (paths are relative to wisefloww/styles.css)
+    add('wisefloww/hero-bg.png');
+    add('wisefloww/contact-bg.png?v=1');
+
+    var total = urls.length, done = 0;
+    function settle(){ done++; }
+    urls.forEach(function(u){
+      var im = new Image();
+      var fin = function(){ settle(); };
+      im.onload = function(){
+        if(im.decode){ im.decode().then(fin, fin); } else { fin(); }
+      };
+      im.onerror = fin;
+      im.src = u;
+    });
+
+    // ---- Fonts + window load ----
+    var fontsReady = false, winLoaded = (document.readyState === 'complete');
+    if(document.fonts && document.fonts.ready){ document.fonts.ready.then(function(){ fontsReady = true; }); }
+    else { fontsReady = true; }
+    window.addEventListener('load', function(){ winLoaded = true; });
+
+    var start = Date.now(), MIN = 1500, MAX = 20000;
+
+    function fraction(){
+      // images carry most of the weight; fonts + load round it out
+      var imgFrac = total ? (done / total) : 1;
+      return imgFrac * 0.82 + (fontsReady ? 0.10 : 0) + (winLoaded ? 0.08 : 0);
+    }
+    function everythingReady(){
+      return done >= total && fontsReady && winLoaded;
+    }
+    function tick(){
+      var elapsed = Date.now() - start;
+      var ceil;
+      if((everythingReady() && elapsed >= MIN) || elapsed >= MAX){
+        ceil = 100;
+      } else {
+        // climb with real progress, but hold below 100 until truly done
+        ceil = Math.min(99, Math.floor(fraction() * 100));
+      }
+      if(shown < ceil){
+        shown += Math.max(1, Math.ceil((ceil - shown) / 8));
+        if(shown > ceil) shown = ceil;
+      }
+      numEl.textContent = shown;
+      loader.setAttribute('aria-valuenow', shown);
+      if(shown >= 100){ setTimeout(reveal, 180); return; }
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  })();
+
+  // Robust hero-subtitle entrance (mobile): animate only once its own webfont
+  // is ready, so a late font-swap can't break/skip the ease-in.
+  (function(){
+    var sub = document.querySelector('.hero-sub');
+    if(!sub) return;
+    var done = false;
+    function play(){ if(done) return; done = true; requestAnimationFrame(function(){ sub.classList.add('sub-in'); }); }
+    function whenRevealed(cb){
+      if(document.documentElement.classList.contains('revealed')) return cb();
+      var obs = new MutationObserver(function(){
+        if(document.documentElement.classList.contains('revealed')){ obs.disconnect(); cb(); }
+      });
+      obs.observe(document.documentElement, {attributes:true, attributeFilter:['class']});
+    }
+    var fontsReady = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
+    whenRevealed(function(){ fontsReady.then(play); });
+    setTimeout(play, 8000); // hard safety
+  })();
+
+  // Mobile hamburger menu
+  (function(){
+    var nav = document.querySelector('.nav');
+    var toggle = document.querySelector('.nav-toggle');
+    var links = document.getElementById('nav-links');
+    if(!nav || !toggle || !links) return;
+    function setOpen(open){
+      nav.classList.toggle('nav-open', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+    toggle.addEventListener('click', function(e){
+      e.stopPropagation();
+      setOpen(!nav.classList.contains('nav-open'));
+    });
+    // close when a menu link is tapped
+    links.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){ setOpen(false); });
+    });
+    // close when tapping anywhere outside the menu
+    document.addEventListener('click', function(e){
+      if(nav.classList.contains('nav-open') && !nav.contains(e.target)) setOpen(false);
+    });
+    // reset if resized back to desktop
+    window.addEventListener('resize', function(){
+      if(window.innerWidth > 760 && nav.classList.contains('nav-open')) setOpen(false);
+    });
+
+    // frosted-glass bar + dark text once we scroll out of the hero;
+    // scrolling the page also closes an open menu (the bar stays fixed)
+    var heroEl = document.querySelector('.hero');
+    function onScroll(){
+      var t = heroEl ? heroEl.offsetHeight - 90 : 240;
+      nav.classList.toggle('scrolled', window.scrollY > t);
+      if(nav.classList.contains('nav-open')) setOpen(false);
+    }
+    window.addEventListener('scroll', onScroll, {passive:true});
+    window.addEventListener('resize', onScroll);
+    onScroll();
+  })();
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(function(item){
+    var q = item.querySelector('.faq-q');
+    var a = item.querySelector('.faq-a');
+    q.addEventListener('click', function(){
+      var isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(function(o){
+        o.classList.remove('open'); o.querySelector('.faq-a').style.maxHeight = null;
+      });
+      if(!isOpen){ item.classList.add('open'); a.style.maxHeight = a.scrollHeight + 'px'; }
+    });
+  });
+</script>
+
+<!-- ============ CONTACT MODAL (HubSpot form) ============ -->
+<div class="cm-overlay" id="contactModal" aria-hidden="true">
+  <div class="cm-dialog" role="dialog" aria-modal="true" aria-label="Contact us">
+    <div class="cm-head">
+      <span class="cm-tag"><span class="cm-dot"></span>Wise Floww</span>
+      <button class="cm-close" type="button" aria-label="Close">&times;</button>
+    </div>
+    <div class="cm-body">
+      <div class="hs-form-frame" data-region="na1" data-form-id="0d98cc71-dc4a-45c5-883a-4d936aa4dd4f" data-portal-id="51501085"></div>
+    </div>
+  </div>
+</div>
+<script src="https://js.hsforms.net/forms/embed/51501085.js" defer></script>
+<script>
+  (function(){
+    var modal = document.getElementById('contactModal');
+    if(!modal) return;
+    var closeBtn = modal.querySelector('.cm-close');
+    function open(e){
+      if(e) e.preventDefault();
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden','false');
+      document.body.style.overflow = 'hidden';
+    }
+    function close(){
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden','true');
+      document.body.style.overflow = '';
+    }
+    // Bind the "See it live" CTA button (text varies by language, element does not)
+    document.querySelectorAll('.cta-card .btn').forEach(function(btn){
+      btn.addEventListener('click', open);
+    });
+    closeBtn.addEventListener('click', close);
+    modal.addEventListener('click', function(e){ if(e.target === modal) close(); });
+    document.addEventListener('keydown', function(e){ if(e.key === 'Escape') close(); });
+  })();
+</script>
+
+<!-- ============ LANGUAGE SWITCHER (EN / ES / PT) ============ -->
+<script src="wisefloww/i18n.js?v=5"></script>
+
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" fill="#0E1B2A"></rect>
+    <path d="M22 54c2-6 4-10 6-10s4 4 6 10 4 10 6 10 4-4 6-10 4-10 6-10 4 4 6 10" fill="none" stroke="#D0FF00" stroke-width="3" stroke-linecap="round"></path>
+  </svg>
+</template>
+
+</body>
+</html>
